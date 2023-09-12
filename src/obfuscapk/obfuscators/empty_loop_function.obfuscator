@@ -1,0 +1,7 @@
+[Core]
+Name = EmptyLoopFunction
+Module = empty_loop_function
+
+[Documentation]
+Description = Add call to empty function with loop within smali code
+Version = 1.0
