@@ -1,0 +1,1 @@
+from .empty_function import EmptyFunction

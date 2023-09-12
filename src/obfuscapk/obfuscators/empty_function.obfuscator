@@ -1,0 +1,7 @@
+[Core]
+Name = EmptyFunction
+Module = empty_function
+
+[Documentation]
+Description = Add call to empty function within smali code
+Version = 1.0
