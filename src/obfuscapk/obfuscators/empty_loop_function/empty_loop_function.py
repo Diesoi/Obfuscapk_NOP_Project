@@ -41,7 +41,7 @@ class EmptyLoopFunction(obfuscator_category.ICodeObfuscator):
                 else:
                     output_file.write(line)
 
-    def add_call_to_emtpy(self, smali_file, max_methods_to_add):
+    def add_call_to_emtpy(self, smali_file):
         self.logger.debug(
             'Inserting call to empty function in file "{0}"'.format(smali_file))
         self.add_empty_loop_function(smali_file)
@@ -52,7 +52,7 @@ class EmptyLoopFunction(obfuscator_category.ICodeObfuscator):
                 # the call to empty_function() is injected before the real call
                 invoke_match = util.invoke_pattern.match(line)
                 if invoke_match:
-                    output_file.write("\tinvoke-static {}, empty_function()V\n")
+                    output_file.write("\tinvoke-static {}, empty_loop_function()V\n")
                     output_file.write(line)
                 # otherwise the original smali line is written
                 else:
@@ -66,7 +66,8 @@ class EmptyLoopFunction(obfuscator_category.ICodeObfuscator):
                 interactive=interactive,
                 description="Inserting call to empty function in smali files"):
             if added_methods < max_methods_to_add:
-                self.add_call_to_emtpy(smali_file, max_methods_to_add)
+                self.add_call_to_emtpy(smali_file)
+                added_methods += 1
             else:
                 break
 
@@ -79,10 +80,10 @@ class EmptyLoopFunction(obfuscator_category.ICodeObfuscator):
 
             if obfuscation_info.is_multidex():
                 for index, dex_smali_files in enumerate(util.show_list_progress(
-                            obfuscation_info.get_multidex_smali_files(),
-                            interactive=obfuscation_info.interactive,
-                            unit="dex",
-                            description="Processing multidex")):
+                        obfuscation_info.get_multidex_smali_files(),
+                        interactive=obfuscation_info.interactive,
+                        unit="dex",
+                        description="Processing multidex")):
                     max_methods_to_add = (obfuscation_info.get_remaining_methods_per_obfuscator()[index])
                     self.treat_dex(dex_smali_files, max_methods_to_add, obfuscation_info.interactive)
             else:

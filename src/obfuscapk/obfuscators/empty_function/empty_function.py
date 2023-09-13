@@ -37,7 +37,7 @@ class EmptyFunction(obfuscator_category.ICodeObfuscator):
                 else:
                     output_file.write(line)
 
-    def add_call_to_emtpy(self, smali_file, max_methods_to_add):
+    def add_call_to_emtpy(self, smali_file):
         self.logger.debug(
             'Inserting call to empty function in file "{0}"'.format(smali_file))
         self.add_empty_function(smali_file)
@@ -62,7 +62,8 @@ class EmptyFunction(obfuscator_category.ICodeObfuscator):
                 interactive=interactive,
                 description="Inserting call to empty function in smali files"):
             if added_methods < max_methods_to_add:
-                self.add_call_to_emtpy(smali_file, max_methods_to_add)
+                self.add_call_to_emtpy(smali_file)
+                added_methods += 1
             else:
                 break
 
@@ -75,10 +76,10 @@ class EmptyFunction(obfuscator_category.ICodeObfuscator):
 
             if obfuscation_info.is_multidex():
                 for index, dex_smali_files in enumerate(util.show_list_progress(
-                            obfuscation_info.get_multidex_smali_files(),
-                            interactive=obfuscation_info.interactive,
-                            unit="dex",
-                            description="Processing multidex")):
+                        obfuscation_info.get_multidex_smali_files(),
+                        interactive=obfuscation_info.interactive,
+                        unit="dex",
+                        description="Processing multidex")):
                     max_methods_to_add = (obfuscation_info.get_remaining_methods_per_obfuscator()[index])
                     self.treat_dex(dex_smali_files, max_methods_to_add, obfuscation_info.interactive)
             else:
