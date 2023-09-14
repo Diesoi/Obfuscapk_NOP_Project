@@ -1,0 +1,7 @@
+[Core]
+Name = ExternalEmptyFunction
+Module = external_empty_function
+
+[Documentation]
+Description = Call to another class empty function
+Version = 1.0
