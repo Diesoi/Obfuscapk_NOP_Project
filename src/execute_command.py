@@ -36,4 +36,4 @@ if __name__ == "__main__":
     output_dir = 'C:\\Users\\diego\\Desktop\\NOP_Android\\Data\\test\\{0}_mod.apk'.format(apk_path.split('\\')[-1].split('.')[0].split('_')[0])
     working_dir = 'C:\\Users\\diego\\Desktop\\NOP_Android\\Data\\test\\word-dir'
     print(output_dir)
-    EmptyFunction(output_dir, working_dir, apk_path)
+    EmptyLoopFunction(output_dir, working_dir, apk_path)
