@@ -1,5 +1,6 @@
 import logging
-import re
+import random
+import string
 
 from obfuscapk import obfuscator_category
 from obfuscapk import util
@@ -17,7 +18,7 @@ class EmptyFunction(obfuscator_category.ICodeObfuscator):
     def add_empty_function(self, smali_file):
 
         # empty method definition
-        function_name = 'empty_function'
+        function_name = util.generate_random_name(lenght=7)
         function_definition = (
             ".method public static {0}()V\n"
             "\t.registers 0\n"
@@ -37,10 +38,12 @@ class EmptyFunction(obfuscator_category.ICodeObfuscator):
                 else:
                     output_file.write(line)
 
+        return function_name
+
     def add_call_to_emtpy(self, smali_file):
         self.logger.debug(
             'Inserting call to empty function in file "{0}"'.format(smali_file))
-        self.add_empty_function(smali_file)
+        function_name = self.add_empty_function(smali_file)
 
         with util.inplace_edit_file(smali_file) as (input_file, output_file):
             for line in input_file:
@@ -48,8 +51,12 @@ class EmptyFunction(obfuscator_category.ICodeObfuscator):
                 # the call to empty_function() is injected before the real call
                 invoke_match = util.invoke_pattern.match(line)
                 if invoke_match:
-                    output_file.write("\tinvoke-static {}, empty_function()V\n")
-                    output_file.write(line)
+                    # randomizing invocation 
+                    if random.choice([True, False]):
+                        output_file.write("\tinvoke-static {{}}, {0}()V\n".format(function_name))
+                        output_file.write(line)
+                    else:
+                        output_file.write(line)
                 # otherwise the original smali line is written
                 else:
                     output_file.write(line)

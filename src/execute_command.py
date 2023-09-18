@@ -32,8 +32,8 @@ def ExternalEmptyFunction(output_dir, working_dir, apk_path):
 
 
 if __name__ == "__main__":
-    apk_path = 'C:\\Users\\diego\\Desktop\\NOP_Android\\Data\\test\\test2_original.apk'
+    apk_path = 'C:\\Users\\diego\\Desktop\\NOP_Android\\Data\\test\\test1_original.apk'
     output_dir = 'C:\\Users\\diego\\Desktop\\NOP_Android\\Data\\test\\{0}_mod.apk'.format(apk_path.split('\\')[-1].split('.')[0].split('_')[0])
     working_dir = 'C:\\Users\\diego\\Desktop\\NOP_Android\\Data\\test\\word-dir'
     print(output_dir)
-    ExternalEmptyFunction(output_dir, working_dir, apk_path)
+    EmptyFunction(output_dir, working_dir, apk_path)

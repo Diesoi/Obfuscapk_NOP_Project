@@ -1,11 +1,10 @@
-.class public final Lphoneword/phoneword/R;
 .class public Lcom/obfuscapk/demo/NopDemo;
 .super Ljava/lang/Object;
 .source "NopDemo.java"
 
 
 # direct methods
-.method public static empty_function()V
+.method public static xKDpI6Q()V
 	.registers 0
 	.line 1
 	.prologue
@@ -16,7 +15,7 @@
     .locals 0
 
     .line 3
-	invoke-static {}, empty_function()V
+	invoke-static {}, xKDpI6Q()V
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -28,23 +27,19 @@
     .line 8
     new-instance v0, Ljava/lang/StringBuilder;
 
-	invoke-static {}, empty_function()V
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
 
     const-string v1, "Nop message: "
 
-	invoke-static {}, empty_function()V
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     const-string v1, "sending a nop message from "
 
-	invoke-static {}, empty_function()V
+	invoke-static {}, xKDpI6Q()V
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-	invoke-static {}, empty_function()V
     invoke-virtual {v0, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-	invoke-static {}, empty_function()V
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object p0
