@@ -305,7 +305,10 @@ def get_advanced_api_reflection_smali_code() -> str:
     )
 
 
-def generate_random_name(lenght) -> str:
+def generate_random_name() -> str:
 
+    random.seed()
+    lenght = random.randint(5, 20)
+    # print(lenght)
     char_set = string.ascii_letters + string.digits
-    return "".join(random.choices(string.ascii_letters) + random.choices(char_set, k=lenght))
+    return "".join([random.choice(string.ascii_letters)] + random.choices(char_set, k=lenght))

@@ -18,7 +18,7 @@ class EmptyFunction(obfuscator_category.ICodeObfuscator):
     def add_empty_function(self, smali_file):
 
         # empty method definition
-        function_name = util.generate_random_name(lenght=7)
+        function_name = util.generate_random_name()
         function_definition = (
             ".method public static {0}()V\n"
             "\t.registers 0\n"

@@ -20,7 +20,7 @@ class EmptyLoopFunction(obfuscator_category.ICodeObfuscator):
 
         index = randint(1, 10)
         # empty method definition
-        function_name = util.generate_random_name(lenght=7)
+        function_name = util.generate_random_name()
         function_definition = (
             ".method public static {0}()V\n"
             "\t.registers 4\n"

@@ -31,6 +31,7 @@ def ExternalEmptyFunction(output_dir, working_dir, apk_path):
     os.system(cmd)
 
 
+def VoidFunction(output_dir, working_dir, apk_path):
     cmd = "python -m obfuscapk.cli -o VoidFunction -o Rebuild -o NewAlignment -d {0} -w {1} " \
           "{2}".format(output_dir,
                        working_dir,
