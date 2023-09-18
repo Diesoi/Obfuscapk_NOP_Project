@@ -69,8 +69,7 @@ class ExternalEmptyFunction(obfuscator_category.ICodeObfuscator):
                 'Inserting call to empty function in file "{0}"'.format(smali_file))
 
             class_name = "L" + "\\".join(smali_to_call.rsplit("\\", 2)[-2:]).replace(".smali", "").replace("\\", "/")
-            print(class_name)
-            print(function_name)
+
             with util.inplace_edit_file(smali_file) as (input_file, output_file):
                 for line in input_file:
                     invoke_match = util.invoke_pattern.match(line)
@@ -110,7 +109,6 @@ class ExternalEmptyFunction(obfuscator_category.ICodeObfuscator):
                 path_to_smali, added_class, function_name = self.add_external_class(obfuscation_info, max_methods_to_add,
                                                                      obfuscation_info.get_smali_files()[0])
 
-                print("F_name ", function_name)
                 self.add_call(obfuscation_info.get_smali_files(), path_to_smali, obfuscation_info.interactive,
                               function_name)
         except Exception as e:
