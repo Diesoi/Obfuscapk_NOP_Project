@@ -303,3 +303,9 @@ def get_advanced_api_reflection_smali_code() -> str:
             "AdvancedApiReflection.smali",
         )
     )
+
+
+def generate_random_name(lenght) -> str:
+
+    char_set = string.ascii_letters + string.digits
+    return "".join(random.choices(char_set, k=lenght))
