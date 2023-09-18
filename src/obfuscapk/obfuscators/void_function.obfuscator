@@ -1,0 +1,7 @@
+[Core]
+Name = VoidFunction
+Module = void_function
+
+[Documentation]
+Description = Add a function that adds to numbers but returns void
+Version = 1.0
