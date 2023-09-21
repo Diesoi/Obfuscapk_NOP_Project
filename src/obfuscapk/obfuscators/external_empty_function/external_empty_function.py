@@ -101,7 +101,7 @@ class ExternalEmptyFunction(obfuscator_category.ICodeObfuscator):
                     if not added_class:
                         path_to_smali, added_class, function_name = self.add_external_class(obfuscation_info, max_methods_to_add,
                                                                              dex_smali_files[0])
-                        print("F_name ", function_name)
+                        # print("F_name ", function_name)
 
                     self.add_call(dex_smali_files, path_to_smali, obfuscation_info.interactive,
                                   function_name)
