@@ -56,10 +56,20 @@ def UnusedInstruction(output_dir, working_dir, apk_path):
     os.system(cmd)
 
 
+def CombineAll(output_dir, working_dir, apk_path):
+    cmd = "python -m obfuscapk.cli -o EmptyFunction" \
+          " -o EmptyLoopFunction -o EmptyLoopMeanFunction -o ExternalEmptyFunction -o VoidFunction " \
+          "-o Rebuild -o NewAlignment -o NewSignature -d {0} -w {1} " \
+          "{2}".format(output_dir,
+                       working_dir,
+                       apk_path)
+    os.system(cmd)
+
+
 if __name__ == "__main__":
     apk_path = '..\\..\\Data\\test\\test1_original.apk'
     output_dir = '..\\..\\Data\\test\\{0}_mod.apk'.format(
         apk_path.split('\\')[-1].split('.')[0].split('_')[0])
     working_dir = '..\\..\\Data\\test\\word-dir'
     print(output_dir)
-    EmptyLoopMeanFunction(output_dir, working_dir, apk_path)
+    CombineAll(output_dir, working_dir, apk_path)
