@@ -1,5 +1,4 @@
 import os
-from obfuscation import Obfuscation
 
 
 def NOP(output_dir, working_dir, apk_path):
@@ -59,17 +58,23 @@ def UnusedInstruction(output_dir, working_dir, apk_path):
 def CombineAll(output_dir, working_dir, apk_path):
     cmd = "python -m obfuscapk.cli -o EmptyFunction" \
           " -o EmptyLoopFunction -o EmptyLoopMeanFunction -o ExternalEmptyFunction -o VoidFunction " \
-          "-o Rebuild -o NewAlignment -o NewSignature -d {0} -w {1} " \
-          "{2}".format(output_dir,
-                       working_dir,
+          "-o Rebuild -o NewAlignment -o NewSignature -d {0} -w /tmp/ " \
+          "{1}".format(output_dir,
                        apk_path)
     os.system(cmd)
 
 
 if __name__ == "__main__":
-    apk_path = '..\\..\\Data\\test\\test1_original.apk'
-    output_dir = '..\\..\\Data\\test\\{0}_mod.apk'.format(
-        apk_path.split('\\')[-1].split('.')[0].split('_')[0])
-    working_dir = '..\\..\\Data\\test\\word-dir'
+    # apk_path = '..\\..\\Data\\test\\test1_original.apk'
+
+    apk_path = os.path.join(" ", "disks", "raid10T", "DataNOP", "test", "test2_original.apk").strip()
+
+    # output_dir = '..\\..\\Data\\test\\{0}_mod.apk'.format(
+    #    apk_path.split('\\')[-1].split('.')[0].split('_')[0])
+
+    output_dir = os.path.join(" ", "disks", "raid10T", "DataNOP", "test", "{0}_mod.apk".format(apk_path.split('\\')[-1].split('.')[0].split('_')[0]))
+
+    # working_dir = '..\\..\\Data\\test\\word-dir'
+    working_dir = os.path.join(" ", "disks", "raid10T", "DataNOP", "test", "word-dir")
     print(output_dir)
-    CombineAll(output_dir, working_dir, apk_path)
+    EmptyFunction(output_dir, working_dir, apk_path)
