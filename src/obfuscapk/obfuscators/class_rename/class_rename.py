@@ -31,7 +31,7 @@ class ClassRename(obfuscator_category.IRenameObfuscator):
         self.encrypted_package_name: Union[str, None] = None
         self.ignore_package_names = []
 
-        # Will be populated before running the class rename obfuscator.
+        # Will be populated before.smali running the class rename obfuscator.
         self.class_name_to_smali_file: dict = {}
 
     def encrypt_identifier(self, identifier: str) -> str:

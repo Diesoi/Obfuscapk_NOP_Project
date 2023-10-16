@@ -134,7 +134,7 @@ def main():
     /path/to/original.apk
     """
 
-    # Verify that the external dependencies are available even before showing the help
+    # Verify that the external dependencies are available even before.smali showing the help
     # message: this way, if the help message is displayed correctly it means that all
     # the needed external tools are available and ready to be used.
     check_external_tool_dependencies()

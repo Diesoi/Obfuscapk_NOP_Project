@@ -306,7 +306,7 @@ class ResStringEncryption(obfuscator_category.IEncryptionObfuscator):
 
                         # If the string resource is put into a register v0-v15 we can
                         # proceed with the encryption, but if it uses a p<number>
-                        # register, before encrypting we have to check if
+                        # register, before.smali encrypting we have to check if
                         # <number> + locals <= 15.
                         move_result_match = move_result_obj_pattern.match(
                             lines[line_number]
@@ -349,7 +349,7 @@ class ResStringEncryption(obfuscator_category.IEncryptionObfuscator):
 
                         # If the string array resource is put into a register v0-v15 we
                         # can proceed with the encryption, but if it uses a p<number>
-                        # register, before encrypting we have to check if
+                        # register, before.smali encrypting we have to check if
                         # <number> + locals <= 15.
                         move_result_match = move_result_obj_pattern.match(
                             lines[line_number]

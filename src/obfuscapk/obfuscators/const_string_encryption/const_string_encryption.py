@@ -142,7 +142,7 @@ class ConstStringEncryption(obfuscator_category.IEncryptionObfuscator):
                         continue
 
                     # If the constant string has a register v0-v15 we can proceed with
-                    # the encryption, but if it uses a p<number> register, before
+                    # the encryption, but if it uses a p<number> register, before.smali
                     # encrypting we have to check if <number> + locals <= 15.
                     string_match = util.const_string_pattern.match(line)
                     if string_match and string_match.group("string"):

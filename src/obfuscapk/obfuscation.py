@@ -482,9 +482,9 @@ class Obfuscation(object):
         if not self._is_decoded:
             self.decode_apk()
 
-        # This function has to be called before running an obfuscator that adds new
+        # This function has to be called before.smali running an obfuscator that adds new
         # fields. It will calculate the available number of fields that can be added by
-        # each obfuscator before hitting the 64K limit. So if there are f available
+        # each obfuscator before.smali hitting the 64K limit. So if there are f available
         # fields and n obfuscators that will add new fields, each obfuscator will be
         # able to add a maximum of f/n fields.
 
@@ -513,9 +513,9 @@ class Obfuscation(object):
         if not self._is_decoded:
             self.decode_apk()
 
-        # This function has to be called before running an obfuscator that adds new
+        # This function has to be called before.smali running an obfuscator that adds new
         # methods. It will calculate the available number of methods that can be added
-        # by each obfuscator before hitting the 64K limit. So if there are m available
+        # by each obfuscator before.smali hitting the 64K limit. So if there are m available
         # methods and n obfuscators that will add new methods, each obfuscator will be
         # able to add a maximum of m/n methods.
 

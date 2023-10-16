@@ -21,7 +21,7 @@ class Reflection(obfuscator_category.ICodeObfuscator):
 
         self.methods_with_reflection: int = 0
 
-        # Will be populated before running the reflection obfuscator.
+        # Will be populated before.smali running the reflection obfuscator.
         self.class_name_to_smali_file: dict = {}
 
         # Keep track of the length of the added instructions for reflection obfuscator,

@@ -52,7 +52,6 @@ class ExternalEmptyFunction(obfuscator_category.ICodeObfuscator):
             # print("Smali: ", smali_dir)
             os.mkdir(smali_dir)
             path_to_new_smali = os.path.join(smali_dir, "{0}.smali".format(class_name))
-
             with open(path_to_new_smali, "w") as file:
                 file.write(class_definition)
             return path_to_new_smali, True, function_name
@@ -73,7 +72,7 @@ class ExternalEmptyFunction(obfuscator_category.ICodeObfuscator):
             with util.inplace_edit_file(smali_file) as (input_file, output_file):
                 for line in input_file:
                     invoke_match = util.invoke_pattern.match(line)
-                    if random.choice([True, False]):
+                    if random.choice([True, False]) and random.choice([True, False]):
                         if invoke_match:
                             output_file.write("\tinvoke-static {{}}, {0};->{1}()V\n".format(class_name, function_name))
                             output_file.write(line)

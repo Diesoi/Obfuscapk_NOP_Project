@@ -70,13 +70,41 @@ def select_year(data_dir):
             except:
                 pass
     print(counter)
+    
+def add_samples(data_dir):
+
+    list_apk_subset = read_subset(data_dir)
+
+    added = {'Benign': list(),
+             'Malicious': list()}
+
+    for t in list_apk_subset.keys():
+        for apk in os.listdir(os.path.join(data_dir, t)):
+            if apk.replace(".apk", "") not in list_apk_subset[t]:
+                added[t].append(apk.replace(".apk", ""))
+    
+    for t in list_apk_subset.keys():
+        random.shuffle(added[t])
+
+        file_path = os.path.join(data_dir, t + '.txt')
+        with open(file_path, 'a') as fp:
+            fp.write("\n".join(added[t][:502])) 
 
 
 if __name__ == '__main__':
 
-    # data_dir = os.path.join("..", "..", "Data", "Set")
-    data_dir = os.path.join(" ", "disks", "raid10T", "DataNOP", "Set").strip()
+    data_dir = os.path.join("..", "..", "Data", "Set")
+    # data_dir = os.path.join(" ", "disks", "raid10T", "DataNOP", "Set").strip()
 
     # create_subset(data_dir)
-    list_apk_subset = read_subset(data_dir)
-    select_year(data_dir)
+    # list_apk_subset = read_subset(data_dir)
+    # select_year(data_dir)
+    
+    add_samples(data_dir)
+    
+    
+    
+    
+    
+    
+    

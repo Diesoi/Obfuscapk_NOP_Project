@@ -55,11 +55,11 @@ class EmptyLoopMeanFunction(obfuscator_category.ICodeObfuscator):
         with util.inplace_edit_file(smali_file) as (input_file, output_file):
             for line in input_file:
                 # if a function call is found (invoke-* opcode)
-                # the call to empty_function() is injected before the real call
+                # the call to empty_function() is injected before.smali the real call
                 invoke_match = util.invoke_pattern.match(line)
                 if invoke_match:
                     # randomizing invocation
-                    if random.choice([True, False]) and "println" not in line:
+                    if random.choice([True, False]) and random.choice([True, False]) and "println" not in line:
                         output_file.write("\tinvoke-static {{}}, {0}()V\n".format(function_name))
                         output_file.write(line)
                     else:

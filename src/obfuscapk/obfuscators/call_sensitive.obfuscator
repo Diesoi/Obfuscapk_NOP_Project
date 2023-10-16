@@ -1,0 +1,7 @@
+[Core]
+Name = CallSensitive
+Module = call_sensitive
+
+[Documentation]
+Description = Adding a call to sensitive APIs
+Version = 1.0
