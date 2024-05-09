@@ -1,0 +1,7 @@
+[Core]
+Name = ApiInjection
+Module = api_injection
+
+[Documentation]
+Description = Add a function that adds to numbers but returns void
+Version = 1.0

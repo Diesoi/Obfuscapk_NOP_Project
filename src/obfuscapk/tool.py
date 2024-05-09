@@ -144,8 +144,8 @@ class Apktool(object):
                 "No output apk path provided, the new apk will be saved in the "
                 'default path: "{0}"'.format(output_apk_path)
             )
-
-        build_cmd: List[str] = [
+        # modified because in Bahamut --frame-path gives problems
+        """build_cmd: List[str] = [
             self.apktool_path,
             "--frame-path",
             tempfile.gettempdir(),
@@ -154,8 +154,16 @@ class Apktool(object):
             source_dir_path,
             "-o",
             output_apk_path,
+        ]"""
+        build_cmd: List[str] = [
+            self.apktool_path,
+            "b",
+            # "--force-all",
+            # "-r",
+            source_dir_path,
+            "-o",
+            output_apk_path,
         ]
-
         if use_aapt2:
             build_cmd.insert(-2, "--use-aapt2")
 
@@ -182,12 +190,17 @@ class Apktool(object):
 
             return output.decode(errors="replace")
         except subprocess.CalledProcessError as e:
-            self.logger.error(
+            """self.logger.error(
                 "Error during build command: {0}".format(
                     e.output.decode(errors="replace") if e.output else e
                 )
             )
-            raise
+            raise"""
+            # apk_folder = "/tmp/" + apk_path.split('//')[-1].replace(".apk", "")
+            # print(apk_folder)
+            print(source_dir_path)
+            cmd = "apktool b " + source_dir_path  + ' -r -o ' + output_apk_path
+            os.system(cmd)
         except Exception as e:
             self.logger.error("Error during building: {0}".format(e))
             raise

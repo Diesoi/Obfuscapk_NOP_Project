@@ -1,0 +1,7 @@
+[Core]
+Name = OpcodeInjection
+Module = opcode_injection
+
+[Documentation]
+Description = Add a function that contains random opcode sequences
+Version = 1.0

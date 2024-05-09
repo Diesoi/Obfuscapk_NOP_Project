@@ -2,6 +2,7 @@ import logging
 import random
 import re
 import string
+import os
 
 from obfuscapk import obfuscator_category
 from obfuscapk import util
@@ -19,7 +20,8 @@ class CallSensitive(obfuscator_category.ICodeObfuscator):
     @staticmethod
     def get_sensitive_api():
         to_return = list()
-        with open('sensitive_apis.txt', 'r') as fp:
+        # print(os.listdir(os.getcwd()))
+        with open('obfuscapk/obfuscators/call_sensitive/sensitive_apis.txt', 'r') as fp:
             apis = fp.read()
 
         for a in apis.split('\n')[:-1]:
@@ -30,7 +32,7 @@ class CallSensitive(obfuscator_category.ICodeObfuscator):
 
     def chose_apis_to_call(self):
         apis = self.get_sensitive_api()
-        idx_random = {random.randint(0, len(apis)-1) for _ in range(3)}
+        idx_random = {random.randint(0, len(apis)-1) for _ in range(8)}
 
         return [apis[i] for i in idx_random]
         # return apis[random.randint(0, len(apis) - 1)]

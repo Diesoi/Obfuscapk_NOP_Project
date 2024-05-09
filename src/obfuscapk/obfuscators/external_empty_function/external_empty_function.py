@@ -43,8 +43,8 @@ class ExternalEmptyFunction(obfuscator_category.ICodeObfuscator):
 
         added_methods = 0
         if added_methods < max_methods_to_add:
-            pattern = re.compile(r"\\(smali[0-9a-zA-Z_]*\\)")
-
+            pattern = re.compile(r"/(smali[0-9a-zA-Z_]*/)")
+            # print(path_to_smali_folder)
             match = re.search(pattern, path_to_smali_folder)
             split = match.group(1)
             smali_dir = os.path.join(path_to_smali_folder.split(split)[0], split, dir_name)
@@ -52,11 +52,13 @@ class ExternalEmptyFunction(obfuscator_category.ICodeObfuscator):
             # print("Smali: ", smali_dir)
             os.mkdir(smali_dir)
             path_to_new_smali = os.path.join(smali_dir, "{0}.smali".format(class_name))
+            # print(path_to_new_smali)
+
             with open(path_to_new_smali, "w") as file:
                 file.write(class_definition)
             return path_to_new_smali, True, function_name
         else:
-            return None, False
+            return None, False, None
 
     def add_call(self, smali_files, smali_to_call, interactive, function_name):
 
@@ -66,8 +68,10 @@ class ExternalEmptyFunction(obfuscator_category.ICodeObfuscator):
                 description="Inserting call to MyClass empty function in smali files"):
             self.logger.debug(
                 'Inserting call to empty function in file "{0}"'.format(smali_file))
+            if smali_to_call is None:
+                continue
 
-            class_name = "L" + "\\".join(smali_to_call.rsplit("\\", 2)[-2:]).replace(".smali", "").replace("\\", "/")
+            class_name = "L" + "/".join(smali_to_call.rsplit("/", 2)[-2:]).replace(".smali", "")
 
             with util.inplace_edit_file(smali_file) as (input_file, output_file):
                 for line in input_file:
@@ -97,6 +101,7 @@ class ExternalEmptyFunction(obfuscator_category.ICodeObfuscator):
                     added_class = False
                     path_to_smali = None
                     max_methods_to_add = obfuscation_info.get_remaining_methods_per_obfuscator()[index]
+
                     if not added_class:
                         path_to_smali, added_class, function_name = self.add_external_class(obfuscation_info, max_methods_to_add,
                                                                              dex_smali_files[0])
